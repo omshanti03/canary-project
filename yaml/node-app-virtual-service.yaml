@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: node-app
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - node-app-gateway
+  http:
+  - route:
+    - destination:
+        host: node-app
+        subset: v1
+      weight: 80
+    - destination:
+        host: node-app
+        subset: v2
+      weight: 20
+
